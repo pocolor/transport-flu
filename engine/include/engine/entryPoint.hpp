@@ -1,7 +1,7 @@
 #pragma once
 
 #include "engine/Logger.hpp"
-#include "engine/Application.hpp"
+#include "engine/application/Application.hpp"
 
 extern engine::Application* createApplication();
 

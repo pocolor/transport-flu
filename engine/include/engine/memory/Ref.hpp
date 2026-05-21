@@ -4,9 +4,7 @@
 
 #include "RefCounted.hpp"
 
-namespace engine::memory {
-    using memory::RefCounted;
-
+namespace engine {
     template <typename T>
     requires(std::is_base_of_v<RefCounted, T>)
     class Ref {

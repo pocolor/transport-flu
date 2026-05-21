@@ -2,7 +2,7 @@
 
 #include <atomic>
 
-namespace engine::memory {
+namespace engine {
     class RefCounted {
         template <typename T>
         requires(std::is_base_of_v<RefCounted, T>)
