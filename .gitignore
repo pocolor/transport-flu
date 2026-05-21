@@ -2,7 +2,5 @@
 
 cmake*/
 
-vendor/*
-
 logs/
 *.log
