@@ -2,13 +2,23 @@
 
 class TransportFluApp : public engine::Application {
 public:
-    void onInit() override {}
+    void onInit() override {
+        TF_INFO("TransportFlu init");
+        getWindow().setTitle("Transport Flu");
+        getWindow().maximize();
+    }
 
-    void onStart() override {}
+    void onStart() override {
+        TF_INFO("TransportFlu start");
+    }
 
-    void onStop() override {}
+    void onStop() override {
+        TF_INFO("TransportFlu stop");
+    }
 
-    void onDestroy() override {}
+    void onTerminate() override {
+        TF_INFO("TransportFlu terminate");
+    }
 };
 
 engine::Application* createApplication() {

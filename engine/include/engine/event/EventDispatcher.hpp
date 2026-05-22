@@ -24,3 +24,5 @@ namespace engine {
         Event& m_event;
     };
 }
+
+#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)

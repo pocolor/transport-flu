@@ -2,15 +2,23 @@
 
 #include "engine/Logger.hpp"
 #include "engine/application/Application.hpp"
+#include "engine/application/Window.hpp"
 
 extern engine::Application* createApplication();
 
 int main() {
-    engine::Logger::init();
+    using namespace engine;
 
-    engine::Application* app = createApplication();
+    Logger::init();
+    Window::initGLFW();
+
+    Application* app = createApplication();
     app->onInit();
+
     app->run();
-    app->onDestroy();
+
+    app->onTerminate();
     delete app;
+
+    Window::terminateGLFW();
 }
