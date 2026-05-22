@@ -76,7 +76,7 @@ namespace engine {
 #define TF_ENGINE_CRITICAL(...) TF_IMPL_CRITICAL(getEngineLogger, __VA_ARGS__)
 
 #define TF_ENGINE_ASSERT(condition) TF_IMPL_ASSERT(getEngineLogger, condition)
-#define TF_ENGINE_ASSERT_M(condition, ...) TF_IMPL_ASSERT(getEngineLogger, condition, __VA_ARGS__)
+#define TF_ENGINE_ASSERT_M(condition, ...) TF_IMPL_ASSERT_M(getEngineLogger, condition, __VA_ARGS__)
 
 #define TF_TRACE(...) TF_IMPL_TRACE(getClientLogger, __VA_ARGS__)
 #define TF_DEBUG(...) TF_IMPL_DEBUG(getClientLogger, __VA_ARGS__)
@@ -86,4 +86,4 @@ namespace engine {
 #define TF_CRITICAL(...) TF_IMPL_CRITICAL(getClientLogger, __VA_ARGS__)
 
 #define TF_ASSERT(condition) TF_IMPL_ASSERT(getClientLogger, condition)
-#define TF_ASSERT_M(condition, ...) TF_IMPL_ASSERT(getClientLogger, condition, __VA_ARGS__)
+#define TF_ASSERT_M(condition, ...) TF_IMPL_ASSERT_M(getClientLogger, condition, __VA_ARGS__)
