@@ -35,6 +35,9 @@ namespace engine {
         auto begin() { return m_elements.begin(); }
         auto end() { return m_elements.end(); }
 
+        auto begin() const { return m_elements.begin(); }
+        auto end() const { return m_elements.end(); }
+
     private:
         void calcOffsetsAndStrides() {
             std::size_t offset = 0;
