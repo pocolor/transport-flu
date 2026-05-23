@@ -5,6 +5,8 @@
 
 #include "glad/glad.h"
 
+#include <ranges>
+
 namespace engine {
     Application::Application() {
         m_window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
@@ -21,6 +23,11 @@ namespace engine {
         while (m_running) {
             glClearColor(1, 0, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
+
+            for (Layer* layer : m_layerStack) {
+                layer->onUpdate();
+            }
+
             m_window->onUpdate();
         }
 
@@ -32,6 +39,11 @@ namespace engine {
 
         EventDispatcher dispatcher(event);
         dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClose));
+
+        for (Layer* layer : std::views::reverse(m_layerStack)) {
+            if (event.isHandled()) break;
+            layer->onEvent(event);
+        }
     }
 
     bool Application::onWindowClose(WindowCloseEvent &event) {

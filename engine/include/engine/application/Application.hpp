@@ -3,6 +3,7 @@
 #include "engine/application/Window.hpp"
 #include "engine/event/Event.hpp"
 #include "engine/event/ApplicationEvent.hpp"
+#include "engine/layer/LayerStack.hpp"
 
 namespace engine {
     class Application {
@@ -12,14 +13,15 @@ namespace engine {
     public:
         virtual ~Application();
 
+        void run();
+
         virtual void onInit() {}
         virtual void onStart() {}
         virtual void onStop() {}
         virtual void onTerminate() {}
 
-        void run();
-
         [[nodiscard]] Window& getWindow() const { return *m_window; }
+        [[nodiscard]] LayerStack& getLayerStack() { return m_layerStack; }
 
     private:
         void onEvent(Event& event);
@@ -27,5 +29,6 @@ namespace engine {
 
         Window* m_window = new Window;
         bool m_running = false;
+        LayerStack m_layerStack;
     };
 }
