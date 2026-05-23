@@ -23,8 +23,22 @@ namespace engine {
 
         m_vertexBuffer = std::make_unique<VertexBuffer>(vertices, sizeof(vertices));
 
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+        BufferLayout layout = {
+            { ShaderDataType::Float3, "a_Position" },
+        };
+
+        int32_t index = 0;
+        for (const auto& element : layout) {
+            glEnableVertexAttribArray(index);
+            glVertexAttribPointer(
+                index,
+                element.getComponentCount(),
+                element.getComponentType(),
+                element.normalized ? GL_TRUE : GL_FALSE,
+                layout.getStride(),
+                (const void*)element.offset);
+            ++index;
+        }
 
         unsigned int indices[] = { 0, 1, 2 };
         m_indexBuffer = std::make_unique<IndexBuffer>(indices, 3);
