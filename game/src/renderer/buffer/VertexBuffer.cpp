@@ -7,7 +7,7 @@ namespace engine {
         glGenBuffers(1, &m_rendererID);
         bind();
 
-        glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, (long)size, vertices, GL_STATIC_DRAW);
     }
 
     VertexBuffer::~VertexBuffer() {

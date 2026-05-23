@@ -3,12 +3,13 @@
 #include <cstdint>
 
 #include "BufferLayout.hpp"
+#include "engine/memory/RefCounted.hpp"
 
 namespace engine {
-    class VertexBuffer {
+    class VertexBuffer : public RefCounted {
     public:
         VertexBuffer(const float* vertices, std::size_t size);
-        ~VertexBuffer();
+        ~VertexBuffer() override;
 
         void bind() const;
         void unbind() const;

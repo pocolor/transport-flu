@@ -2,11 +2,13 @@
 
 #include <cstdint>
 
+#include "engine/memory/RefCounted.hpp"
+
 namespace engine {
-    class IndexBuffer {
+    class IndexBuffer : public RefCounted {
     public:
         IndexBuffer(const uint32_t* indices, std::size_t count);
-        ~IndexBuffer();
+        ~IndexBuffer() override;
 
         void bind() const;
         void unbind() const;
