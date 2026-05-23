@@ -5,6 +5,10 @@
 #include "engine/event/ApplicationEvent.hpp"
 #include "engine/layer/LayerStack.hpp"
 
+#include "engine/renderer/Shader.hpp"
+#include "engine/renderer/buffer/VertexBuffer.hpp"
+#include "engine/renderer/buffer/IndexBuffer.hpp"
+
 namespace engine {
     class Application {
     protected:
@@ -20,15 +24,21 @@ namespace engine {
         virtual void onStop() {}
         virtual void onTerminate() {}
 
-        [[nodiscard]] Window& getWindow() const { return *m_window; }
+        [[nodiscard]] Window& getWindow() { return m_window; }
         [[nodiscard]] LayerStack& getLayerStack() { return m_layerStack; }
 
     private:
         void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& event);
 
-        Window* m_window = new Window;
         bool m_running = false;
+        Window m_window;
         LayerStack m_layerStack;
+
+        // TMP
+        unsigned int m_vertexArray = 0;
+        std::unique_ptr<Shader> m_shader;
+        std::unique_ptr<VertexBuffer> m_vertexBuffer;
+        std::unique_ptr<IndexBuffer> m_indexBuffer;
     };
 }

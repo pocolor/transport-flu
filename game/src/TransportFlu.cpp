@@ -5,7 +5,6 @@ public:
     void onInit() override {
         TF_INFO("TransportFlu init");
         getWindow().setTitle("Transport Flu");
-        getWindow().maximize();
     }
 
     void onStart() override {
