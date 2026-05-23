@@ -32,6 +32,29 @@ namespace engine {
             }
         }
 
+        Ref& operator=(const Ref& other) {
+            if (this == &other)
+                return *this;
+
+            other.incCount();
+            decCount();
+
+            m_reference = other.m_reference;
+            return *this;
+        }
+
+        Ref& operator=(Ref&& other) noexcept {
+            if (this == &other)
+                return *this;
+
+            decCount();
+
+            m_reference = other.m_reference;
+            other.m_reference = nullptr;
+
+            return *this;
+        }
+
         template <typename T2>
         requires(std::is_base_of_v<T2, T> || std::is_base_of_v<T, T2>)
         Ref<T2> as() const { return Ref<T2>(dynamic_cast<T2*>(m_reference)); }
