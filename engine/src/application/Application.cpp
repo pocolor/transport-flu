@@ -8,6 +8,11 @@
 #include <memory>
 #include <ranges>
 
+#include "engine/renderer/buffer/VertexArray.hpp"
+#include "engine/renderer/buffer/IndexBuffer.hpp"
+#include "engine/renderer/RenderCommand.hpp"
+#include "engine/renderer/Renderer.hpp"
+
 namespace engine {
     Application::Application() {
         m_window.setEventCallback(BIND_EVENT_FN(Application::onEvent));
@@ -18,19 +23,20 @@ namespace engine {
              0.0f,  0.5f, 0.0f,
         };
 
+        Ref<VertexBuffer> vertexBuffer = Ref(new VertexBuffer(vertices, sizeof(vertices)));
+
         BufferLayout layout = {
             { ShaderDataType::Float3, "a_Position" },
         };
 
-        m_vertexBuffer = Ref(new VertexBuffer(vertices, sizeof(vertices)));
-        m_vertexBuffer->setLayout(layout);
+        vertexBuffer->setLayout(layout);
 
         unsigned int indices[] = { 0, 1, 2 };
-        m_indexBuffer = Ref(new IndexBuffer(indices, 3));
+        Ref<IndexBuffer> indexBuffer = Ref(new IndexBuffer(indices, 3));
 
-        m_vertexArray = std::make_unique<VertexArray>();
-        m_vertexArray->addVertexBuffer(m_vertexBuffer);
-        m_vertexArray->setIndexBuffer(m_indexBuffer);
+        m_vertexArray = Ref(new VertexArray());
+        m_vertexArray->addVertexBuffer(vertexBuffer);
+        m_vertexArray->setIndexBuffer(indexBuffer);
 
         std::string vertexSrc = R"(
 #version 330 core
@@ -67,12 +73,15 @@ void main() {
 
         m_running = true;
         while (m_running) {
-            glClearColor(1, 0, 1, 1);
-            glClear(GL_COLOR_BUFFER_BIT);
+            RenderCommand::setClearColor({1, 0, 1, 1});
+            RenderCommand::clear();
+
+            Renderer::beginScene();
 
             m_shader->bind();
-            m_vertexArray->bind();
-            glDrawElements(GL_TRIANGLES, (int32_t) m_indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+            Renderer::submit(m_vertexArray);
+
+            Renderer::endScene();
 
             for (Layer* layer : m_layerStack) {
                 layer->onUpdate();
