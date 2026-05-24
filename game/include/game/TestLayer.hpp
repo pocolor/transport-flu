@@ -7,12 +7,16 @@
 #include "engine/renderer/Shader.hpp"
 #include "engine/renderer/buffer/VertexBuffer.hpp"
 
+#include "engine/renderer/camera/OrthographicCamera.hpp"
+
 #include "engine/memory/Ref.hpp"
 
 class TestLayer : public engine::Layer {
 public:
-    TestLayer() : Layer("TestLayer") {}
-    ~TestLayer() override {}
+    TestLayer():
+        Layer("TestLayer"),
+        m_camera(-2.0f, 2.0f, -1.0f, 1.0f) {}
+    ~TestLayer() override = default;
 
     void onAttach() override {
         using namespace engine;
@@ -43,11 +47,13 @@ public:
 
 layout (location = 0) in vec3 a_Position;
 
+uniform mat4 u_ViewProjectionMatrix;
+
 out vec3 v_Position;
 
 void main() {
     v_Position = a_Position;
-    gl_Position = vec4(a_Position, 1.0);
+    gl_Position = u_ViewProjectionMatrix * vec4(a_Position, 1.0);
 }
 )";
 
@@ -75,6 +81,7 @@ void main() {
         Renderer::beginScene();
 
         m_shader->bind();
+        m_shader->uploadUniformMat4("u_ViewProjectionMatrix", m_camera.getViewProjectionMatrix());
         Renderer::submit(m_vertexArray);
 
         Renderer::endScene();
@@ -83,4 +90,6 @@ void main() {
 private:
     std::unique_ptr<engine::Shader> m_shader;
     engine::Ref<engine::VertexArray> m_vertexArray;
+
+    engine::OrthographicCamera m_camera;
 };

@@ -1,7 +1,9 @@
 #pragma once
 
-#include <cstdint>
 #include <string>
+#include <map>
+
+#include "glm/glm.hpp"
 
 namespace engine {
     class Shader {
@@ -12,7 +14,10 @@ namespace engine {
         void bind() const;
         void unbind() const;
 
+        void uploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+
     private:
+        std::map<std::string, int> m_uniformLocations;
         uint32_t m_rendererID;
     };
 }

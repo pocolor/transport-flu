@@ -1,10 +1,11 @@
 #include "engine/renderer/Shader.hpp"
 
-#include "glad/glad.h"
-
 #include <vector>
 
 #include "engine/Logger.hpp"
+
+#include "glad/glad.h"
+#include "glm/gtc/type_ptr.hpp"
 
 namespace engine {
     Shader::Shader(const std::string &vertexSrc, const std::string &fragmentSrc) {
@@ -99,5 +100,16 @@ namespace engine {
 
     void Shader::unbind() const {
         glUseProgram(0);
+    }
+
+    void Shader::uploadUniformMat4(const std::string& name, const glm::mat4 &matrix) {
+    	int location;
+    	if (m_uniformLocations.contains(name)) {
+    		location = m_uniformLocations[name];
+    	} else {
+    		location = glGetUniformLocation(m_rendererID, name.c_str());
+    		m_uniformLocations[name] = location;
+    	}
+	    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
     }
 }
