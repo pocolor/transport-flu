@@ -9,7 +9,7 @@
 #include <vector>
 
 namespace engine {
-    class VertexArray : RefCounted {
+    class VertexArray : public RefCounted {
     public:
         VertexArray();
         ~VertexArray();
