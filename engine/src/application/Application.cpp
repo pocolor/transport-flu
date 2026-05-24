@@ -12,36 +12,25 @@ namespace engine {
     Application::Application() {
         m_window.setEventCallback(BIND_EVENT_FN(Application::onEvent));
 
-        glGenVertexArrays(1, &m_vertexArray);
-        glBindVertexArray(m_vertexArray);
-
         float vertices[] = {
             -0.5f, -0.5f, 0.0f,
              0.5f, -0.5f, 0.0f,
              0.0f,  0.5f, 0.0f,
         };
 
-        m_vertexBuffer = std::make_unique<VertexBuffer>(vertices, sizeof(vertices));
-
         BufferLayout layout = {
             { ShaderDataType::Float3, "a_Position" },
         };
 
-        int32_t index = 0;
-        for (const auto& element : layout) {
-            glEnableVertexAttribArray(index);
-            glVertexAttribPointer(
-                index,
-                element.getComponentCount(),
-                element.getComponentType(),
-                element.normalized ? GL_TRUE : GL_FALSE,
-                layout.getStride(),
-                (const void*)element.offset);
-            ++index;
-        }
+        m_vertexBuffer = Ref(new VertexBuffer(vertices, sizeof(vertices)));
+        m_vertexBuffer->setLayout(layout);
 
         unsigned int indices[] = { 0, 1, 2 };
-        m_indexBuffer = std::make_unique<IndexBuffer>(indices, 3);
+        m_indexBuffer = Ref(new IndexBuffer(indices, 3));
+
+        m_vertexArray = std::make_unique<VertexArray>();
+        m_vertexArray->addVertexBuffer(m_vertexBuffer);
+        m_vertexArray->setIndexBuffer(m_indexBuffer);
 
         std::string vertexSrc = R"(
 #version 330 core
@@ -82,7 +71,7 @@ void main() {
             glClear(GL_COLOR_BUFFER_BIT);
 
             m_shader->bind();
-            glBindVertexArray(m_vertexArray);
+            m_vertexArray->bind();
             glDrawElements(GL_TRIANGLES, (int32_t) m_indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
 
             for (Layer* layer : m_layerStack) {
