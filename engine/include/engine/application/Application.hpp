@@ -5,9 +5,6 @@
 #include "engine/event/ApplicationEvent.hpp"
 #include "engine/layer/LayerStack.hpp"
 
-#include "engine/renderer/Shader.hpp"
-#include "engine/renderer/buffer/VertexArray.hpp"
-
 namespace engine {
     class Application {
     protected:
@@ -33,9 +30,5 @@ namespace engine {
         bool m_running = false;
         Window m_window;
         LayerStack m_layerStack;
-
-        // TMP
-        std::unique_ptr<Shader> m_shader;
-        Ref<VertexArray> m_vertexArray;
     };
 }
