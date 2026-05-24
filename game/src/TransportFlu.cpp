@@ -1,10 +1,14 @@
 #include "engine/entryPoint.hpp"
 
+#include "game/TestLayer.hpp"
+
 class TransportFluApp : public engine::Application {
 public:
     void onInit() override {
         TF_INFO("TransportFlu init");
         getWindow().setTitle("Transport Flu");
+
+        getLayerStack().pushLayer(new TestLayer);
     }
 
     void onStart() override {
