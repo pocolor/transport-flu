@@ -8,6 +8,7 @@
 #include "engine/renderer/Shader.hpp"
 #include "engine/renderer/buffer/VertexBuffer.hpp"
 #include "engine/renderer/buffer/IndexBuffer.hpp"
+#include "engine/renderer/buffer/VertexArray.hpp"
 
 namespace engine {
     class Application {
@@ -36,9 +37,9 @@ namespace engine {
         LayerStack m_layerStack;
 
         // TMP
-        unsigned int m_vertexArray = 0;
         std::unique_ptr<Shader> m_shader;
-        std::unique_ptr<VertexBuffer> m_vertexBuffer;
-        std::unique_ptr<IndexBuffer> m_indexBuffer;
+        std::unique_ptr<VertexArray> m_vertexArray;
+        Ref<VertexBuffer> m_vertexBuffer;
+        Ref<IndexBuffer> m_indexBuffer;
     };
 }
