@@ -6,9 +6,15 @@
 
 #include <ranges>
 
+#include "Time.hpp"
+#include "input/Input.hpp"
+
 namespace tf {
     Application::Application() {
         m_window.setEventCallback(BIND_EVENT_FN(Application::onEvent));
+
+        Time::setHandle(m_window.getHandle());
+        Input::setHandle(m_window.getHandle());
     }
 
     Application::~Application() = default;
@@ -16,6 +22,9 @@ namespace tf {
     void Application::run() {
         m_running = true;
         while (m_running) {
+            Time::onUpdate();
+            Input::onUpdate();
+
             for (Layer* layer : m_layerStack) {
                 layer->onUpdate();
             }
