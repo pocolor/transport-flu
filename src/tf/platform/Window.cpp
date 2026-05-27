@@ -13,6 +13,11 @@ namespace tf {
     }
 
     Window::Window() {
+        const int success = glfwInit();
+        TF_ENGINE_ASSERT(success);
+
+        glfwSetErrorCallback(glfwErrorCallback);
+
         m_handle = glfwCreateWindow(
             m_data.width,
             m_data.height,
@@ -60,16 +65,6 @@ data.eventCallback(evnt)
 
     Window::~Window() {
         glfwDestroyWindow(m_handle);
-    }
-
-    void Window::initGLFW() {
-        const int success = glfwInit();
-        TF_ENGINE_ASSERT(success);
-
-        glfwSetErrorCallback(glfwErrorCallback);
-    }
-
-    void Window::terminateGLFW() {
         glfwTerminate();
     }
 

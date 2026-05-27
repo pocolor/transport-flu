@@ -25,9 +25,6 @@ namespace tf {
 
         void onUpdate() const;
 
-        static void initGLFW();
-        static void terminateGLFW();
-
         void setTitle(const str& title);
         void setSize(int width, int height) const;
         void maximize() const;
