@@ -7,11 +7,13 @@ set(CMAKE_CXX_STANDARD 20)
 file(GLOB_RECURSE tf-source "src/*.cpp")
 
 add_executable(tf ${tf-source})
+target_include_directories(tf PRIVATE src)
+target_precompile_headers(tf PRIVATE src/tf/pch.hpp)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_definitions(tf PUBLIC TF_BUILD_RELEASE)
+    target_compile_definitions(tf PRIVATE TF_BUILD_RELEASE)
 else()
-    target_compile_definitions(tf PUBLIC TF_BUILD_DEBUG)
+    target_compile_definitions(tf PRIVATE TF_BUILD_DEBUG)
 endif()
 
 find_package(OpenGL REQUIRED)
@@ -19,7 +21,7 @@ find_package(OpenGL REQUIRED)
 add_library(glad STATIC vendor/glad/src/glad.c)
 target_include_directories(glad PUBLIC vendor/glad/include)
 set_target_properties(glad PROPERTIES POSITION_INDEPENDENT_CODE ON)
-target_compile_definitions(tf PUBLIC GLFW_INCLUDE_NONE)
+target_compile_definitions(tf PRIVATE GLFW_INCLUDE_NONE)
 
 add_subdirectory(vendor/glfw)
 add_subdirectory(vendor/glm)
@@ -27,7 +29,7 @@ add_subdirectory(vendor/spdlog)
 set_target_properties(spdlog PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_compile_definitions(spdlog PUBLIC SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_DEBUG)
 
-target_link_libraries(tf PUBLIC
+target_link_libraries(tf PRIVATE
         OpenGL::GL
         glad
         glfw

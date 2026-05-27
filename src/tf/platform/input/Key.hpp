@@ -1,0 +1,131 @@
+#pragma once
+
+#include "tf/core.hpp"
+
+// borrowed from glfw3.h
+
+namespace tf::key {
+    /* Printable keys */
+    constexpr i32 Space = 32;
+    constexpr i32 Apostrophe = 39;
+    constexpr i32 Comma = 44;
+    constexpr i32 Minus = 45;
+    constexpr i32 Dot = 46;
+    constexpr i32 Slash = 47;
+    constexpr i32 _0 = 48;
+    constexpr i32 _1 = 49;
+    constexpr i32 _2 = 50;
+    constexpr i32 _3 = 51;
+    constexpr i32 _4 = 52;
+    constexpr i32 _5 = 53;
+    constexpr i32 _6 = 54;
+    constexpr i32 _7 = 55;
+    constexpr i32 _8 = 56;
+    constexpr i32 _9 = 57;
+    constexpr i32 Semicolon = 59;
+    constexpr i32 Equal = 61;
+    constexpr i32 A = 65;
+    constexpr i32 B = 66;
+    constexpr i32 C = 67;
+    constexpr i32 D = 68;
+    constexpr i32 E = 69;
+    constexpr i32 F = 70;
+    constexpr i32 G = 71;
+    constexpr i32 H = 72;
+    constexpr i32 I = 73;
+    constexpr i32 J = 74;
+    constexpr i32 K = 75;
+    constexpr i32 L = 76;
+    constexpr i32 M = 77;
+    constexpr i32 N = 78;
+    constexpr i32 O = 79;
+    constexpr i32 P = 80;
+    constexpr i32 Q = 81;
+    constexpr i32 R = 82;
+    constexpr i32 S = 83;
+    constexpr i32 T = 84;
+    constexpr i32 U = 85;
+    constexpr i32 V = 86;
+    constexpr i32 W = 87;
+    constexpr i32 X = 88;
+    constexpr i32 Y = 89;
+    constexpr i32 Z = 90;
+    constexpr i32 LeftBracket = 91;
+    constexpr i32 Backslash = 92;
+    constexpr i32 RightBracket = 93;
+    constexpr i32 GraveAccent = 96;  // `
+
+    /* Function keys */
+    constexpr i32 Escape = 256;
+    constexpr i32 Enter = 257;
+    constexpr i32 Tab = 258;
+    constexpr i32 Backspace = 259;
+    constexpr i32 Insert = 260;
+    constexpr i32 Delete = 261;
+    constexpr i32 ArrowRight = 262;
+    constexpr i32 ArrowLeft = 263;
+    constexpr i32 ArrowDown = 264;
+    constexpr i32 ArrowUp = 265;
+    constexpr i32 PageUp = 266;
+    constexpr i32 PageDown = 267;
+    constexpr i32 Home = 268;
+    constexpr i32 End = 269;
+    constexpr i32 CapsLock = 280;
+    constexpr i32 ScrollLock = 281;
+    constexpr i32 NumLock = 282;
+    constexpr i32 PrintScreen = 283;
+    constexpr i32 Pause = 284;
+    constexpr i32 F1 = 290;
+    constexpr i32 F2 = 291;
+    constexpr i32 F3 = 292;
+    constexpr i32 F4 = 293;
+    constexpr i32 F5 = 294;
+    constexpr i32 F6 = 295;
+    constexpr i32 F7 = 296;
+    constexpr i32 F8 = 297;
+    constexpr i32 F9 = 298;
+    constexpr i32 F10 = 299;
+    constexpr i32 F11 = 300;
+    constexpr i32 F12 = 301;
+    constexpr i32 F13 = 302;
+    constexpr i32 F14 = 303;
+    constexpr i32 F15 = 304;
+    constexpr i32 F16 = 305;
+    constexpr i32 F17 = 306;
+    constexpr i32 F18 = 307;
+    constexpr i32 F19 = 308;
+    constexpr i32 F20 = 309;
+    constexpr i32 F21 = 310;
+    constexpr i32 F22 = 311;
+    constexpr i32 F23 = 312;
+    constexpr i32 F24 = 313;
+    constexpr i32 F25 = 314;
+    constexpr i32 KP_0 = 320;
+    constexpr i32 KP_1 = 321;
+    constexpr i32 KP_2 = 322;
+    constexpr i32 KP_3 = 323;
+    constexpr i32 KP_4 = 324;
+    constexpr i32 KP_5 = 325;
+    constexpr i32 KP_6 = 326;
+    constexpr i32 KP_7 = 327;
+    constexpr i32 KP_8 = 328;
+    constexpr i32 KP_9 = 329;
+    constexpr i32 KP_Decimal = 330;
+    constexpr i32 KP_Divide = 331;
+    constexpr i32 KP_Multiply = 332;
+    constexpr i32 KP_Subtract = 333;
+    constexpr i32 KP_Add = 334;
+    constexpr i32 KP_Enter = 335;
+    constexpr i32 KP_Equal = 336;
+    constexpr i32 LeftShift = 340;
+    constexpr i32 LeftControl = 341;
+    constexpr i32 LeftAlt = 342;
+    constexpr i32 LeftSuper = 343;
+    constexpr i32 RightShift = 344;
+    constexpr i32 RightControl = 345;
+    constexpr i32 RightAlt = 346;
+    constexpr i32 RightSuper = 347;
+    constexpr i32 Menu = 348;
+
+    constexpr i32 Last = Menu;
+}
