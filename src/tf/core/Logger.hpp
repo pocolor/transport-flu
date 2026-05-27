@@ -29,12 +29,12 @@ namespace tf {
 #define TF_DEBUGBREAK() raise(SIGTRAP)
 #endif
 
-#define TF_IMPL_TRACE(func, ...) SPDLOG_LOGGER_TRACE(engine::Logger::func(), __VA_ARGS__)
-#define TF_IMPL_DEBUG(func, ...) SPDLOG_LOGGER_DEBUG(engine::Logger::func(), __VA_ARGS__)
-#define TF_IMPL_INFO(func, ...) SPDLOG_LOGGER_INFO(engine::Logger::func(), __VA_ARGS__)
-#define TF_IMPL_WARN(func, ...) SPDLOG_LOGGER_WARN(engine::Logger::func(), __VA_ARGS__)
-#define TF_IMPL_ERROR(func, ...) SPDLOG_LOGGER_ERROR(engine::Logger::func(), __VA_ARGS__)
-#define TF_IMPL_CRITICAL(func, ...) SPDLOG_LOGGER_CRITICAL(engine::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_TRACE(func, ...) SPDLOG_LOGGER_TRACE(tf::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_DEBUG(func, ...) SPDLOG_LOGGER_DEBUG(tf::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_INFO(func, ...) SPDLOG_LOGGER_INFO(tf::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_WARN(func, ...) SPDLOG_LOGGER_WARN(tf::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_ERROR(func, ...) SPDLOG_LOGGER_ERROR(tf::Logger::func(), __VA_ARGS__)
+#define TF_IMPL_CRITICAL(func, ...) SPDLOG_LOGGER_CRITICAL(tf::Logger::func(), __VA_ARGS__)
 
 #define TF_IMPL_ASSERT(func, condition) \
     do { \
