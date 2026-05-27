@@ -55,7 +55,7 @@ namespace tf {
         gameConsoleSink->set_pattern("%^[%T.%e] [%n] [%l] %s:%# %!(): %v%$");
 
         auto gameFileSink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
-            "logs/client.log",
+            "logs/game.log",
             1024 * 1024 * 5,
             3);
         gameFileSink->set_level(spdlog::level::info);
