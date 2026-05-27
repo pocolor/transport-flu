@@ -25,5 +25,5 @@ namespace tf {
     using mat4 = glm::mat4;
     using quat = glm::quat;
 
-    using RendererID = i32;
+    using RendererID = u32;
 }
