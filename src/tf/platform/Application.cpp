@@ -1,20 +1,16 @@
 #include "tf/pch.hpp"
 
 #include "Application.hpp"
+#include "Time.hpp"
+#include "input/Input.hpp"
 
 #include "tf/event/EventDispatcher.hpp"
 
 #include <ranges>
 
-#include "Time.hpp"
-#include "input/Input.hpp"
-
 namespace tf {
     Application::Application() {
         m_window.setEventCallback(BIND_EVENT_FN(Application::onEvent));
-
-        Time::setHandle(m_window.getHandle());
-        Input::setHandle(m_window.getHandle());
     }
 
     Application::~Application() = default;

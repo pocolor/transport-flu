@@ -14,16 +14,15 @@ namespace tf {
         static bool isMouseButtonDown(i32 button) { TF_ENGINE_ASSERT(button >= 0 && button <= mouse_button::Last); return s_mouseButtonsDown[button]; }
         static f32 getMousePositionX() { return s_mousePositionX; }
         static f32 getMousePositionY() { return s_mousePositionY; }
-        static vec2 getMousePosition() { return vec2(getMousePositionX(), getMousePositionY()); }
+        static vec2 getMousePosition() { return { getMousePositionX(), getMousePositionY() }; }
         static f32 getMouseDeltaPositionX() { return s_mouseDeltaPositionX; }
         static f32 getMouseDeltaPositionY() { return s_mouseDeltaPositionY; }
-        static vec2 getMouseDeltaPosition() { return vec2(getMouseDeltaPositionX(), getMouseDeltaPositionY()); }
+        static vec2 getMouseDeltaPosition() { return { getMouseDeltaPositionX(), getMouseDeltaPositionY() }; }
         static f32 getMouseWheel() { return s_mouseWheel; }
         static f32 getMouseDeltaWheel() { return s_mouseDeltaWheel; }
 
-        static void init();
+        static void init(GLFWwindow* handle);
         static void onUpdate();
-        static void setHandle(GLFWwindow* window) { s_handle = window; }
 
     private:
         static void scrollCallback(GLFWwindow* handle, double xOffset, double yOffset);

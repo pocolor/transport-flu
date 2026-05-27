@@ -146,7 +146,8 @@ namespace tf {
         mouse_button::_8,
     };
 
-    void Input::init() {
+    void Input::init(GLFWwindow* handle) {
+        s_handle = handle;
         glfwSetScrollCallback(s_handle, scrollCallback);
 
         double x, y;
@@ -154,12 +155,12 @@ namespace tf {
         s_mousePositionX = (f32)x;
         s_mousePositionY = (f32)y;
 
-        for (i32 k = 0; k < key::Last + 1; ++k) {
-            s_keysDown[k] = false;
+        for (bool& k : s_keysDown) {
+            k = false;
         }
 
-        for (i32 m = 0; m < mouse_button::Last + 1; ++m) {
-            s_keysDown[m] = false;
+        for (bool& m : s_mouseButtonsDown) {
+            m = false;
         }
     }
 

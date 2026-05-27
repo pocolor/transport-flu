@@ -23,7 +23,7 @@ namespace tf {
         void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& event);
 
-        bool m_running = false;
+        volatile bool m_running = false;
         Window m_window;
         LayerStack m_layerStack;
     };

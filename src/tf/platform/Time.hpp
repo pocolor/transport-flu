@@ -11,8 +11,8 @@ namespace tf {
 
         static f32 getDeltaTime() { return s_deltaTime; }
 
+        static void init(GLFWwindow* handle) { s_handle = handle; }
         static void onUpdate();
-        static void setHandle(GLFWwindow* handle) { s_handle = handle; }
 
     private:
         static GLFWwindow* s_handle;
